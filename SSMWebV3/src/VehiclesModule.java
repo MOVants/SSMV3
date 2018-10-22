@@ -201,7 +201,7 @@ private void createVehicle() {
 }
 
 private void vehiclesManagement() {
-	  driver.findElement(By.xpath(vehicleManagementMenu)).click();
+	  driver.findElement(By.xpath(vehicleManagementBtn)).click();
 }
 
 private void setvehivleInformation() throws InterruptedException  {

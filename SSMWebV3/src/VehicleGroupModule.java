@@ -153,7 +153,7 @@ public class VehicleGroupModule extends StringValues{
 	
 
 	private void clickVehicleGroupTab() {
-		driver.findElement(By.xpath(vehicleGroupTab)).click();
+		driver.findElement(By.xpath(vehicleGroupManagementBtn)).click();
 	}
 
 	private void cLickCreateBtn()throws Exception {
