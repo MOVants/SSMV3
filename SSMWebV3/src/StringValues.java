@@ -28,7 +28,7 @@ public class StringValues {
 	protected String clickForm = "//div[@id='tab-vehicle-info']/div[5]/div/div/div/label";
 	protected String vehicleMilageField = "vehicle.vehicleMilage";
 	protected String fuelConsumptionField = "vehicle.fuelConsumption";
-	protected String cehicleDescriptionField = "vehicle.description";
+	protected String vehicleDescriptionField = "vehicle.description";
 	protected String drpdwnVehicleManufacturer = "select-manufacturer";
 	protected String drpdwnSelectVehicleManufacturer = "select-manufacturer";
 	protected String drpdwnVehicletype = "select-vehicle-type";

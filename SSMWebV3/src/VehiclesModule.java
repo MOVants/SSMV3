@@ -150,7 +150,7 @@ public class VehiclesModule extends StringValues {
 	  Thread.sleep(1000);
 	  createVehicle();
 	  setvehivleInformation();
-	  driver.findElement(By.id(cehicleDescriptionField)).clear();
+	  driver.findElement(By.id(vehicleDescriptionField)).clear();
 	  setGPSInfo();
 	  setFuelTankCalibration();
 	  assignVehicleGroups();
