@@ -1,9 +1,5 @@
 
 public class StringValues {
-	
-	
-	
-	
 	//user credentials
 	protected String authusername = "marvin.ssmuser@ssm.com";
 	protected String authpass = "1";
@@ -59,10 +55,11 @@ public class StringValues {
 	protected String saveBtn = "//text()[contains(.,'Save')]/ancestor::button[1]";
 	
 // Drivers Modules
+	protected String editBtn = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/a[1]";
 	protected String createDriverBtn = "//text()[contains(.,'Create')]/ancestor::a[1]";
 	protected String firstNameField = "firstName";
 	protected String middleNameField = "middleName";
-	protected String LastNameField = "lastName";
+	protected String lastNameField = "lastName";
 	protected String contactNumberField = "contactNumber";
 	protected String emailField = "email";
 	protected String genderDrpdwn = "status-filter";
