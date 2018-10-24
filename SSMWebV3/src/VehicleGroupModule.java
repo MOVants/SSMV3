@@ -9,19 +9,34 @@ import org.openqa.selenium.*;
 public class VehicleGroupModule extends StringValues{
 	private WebDriver driver;
 	static String browser;
+	static String whoUser;
 
 	public void setBrowser() {
+		whoUser = "marvin";
+				
 		browser = "Chrome";
+		
+		
 	}
 	public void browserConfig () {
 
 		if (browser.contains("Firefox")) {
-			System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver"); 
+			
+			if (whoUser.contains("marvin")) {
+				System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver");
+			} if (whoUser.contains("altair")) {
+				System.setProperty("webdriver.gecko.driver","C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\geckoDriver\\geckodriver"); 
+			}
+			
 			driver = new FirefoxDriver();
-		}else if (browser.contains("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
-			driver = new ChromeDriver();
+		} if (browser.contains("Chrome")) {
+			if (whoUser.contains("marvin")) {
+				System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
+			}if (whoUser.contains("altair")) {
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\chromeDriver\\chromedriver");
+			}
 		}
+		driver = new ChromeDriver();
 	}
 
 	@Before
@@ -33,8 +48,8 @@ public class VehicleGroupModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
-	@Test
-	public void createVehicleGroupTest() throws Exception {
+	  @Test
+	  public void createVehicleGroupTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
 		cLickCreateBtn();
