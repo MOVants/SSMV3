@@ -12,14 +12,14 @@ public class DriversModule extends StringValues{
 	static String browser;
 
 	public void setBrowser() {
-		browser = "Firefox";
+		browser = "Chrome";
 	}
 	public void browserConfig () {
 		
 		if (browser.contains("Firefox")) {
 			System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver"); 
 			driver = new FirefoxDriver();
-		}else if (browser.contains("Firefox")) {
+		}else if (browser.contains("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
 			driver = new ChromeDriver();
 		}
