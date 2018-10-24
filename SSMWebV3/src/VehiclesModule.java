@@ -18,7 +18,7 @@ public class VehiclesModule extends StringValues {
 	}
 	public void browserConfig () {
 		
-		if (browser.contains("Firefox")) {
+		if (browser.contains("firefox")) {
 			System.setProperty("webdriver.gecko.driver","C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\geckoDriver\\geckodriver"); 
 			driver = new FirefoxDriver();
 		}else if (browser.contains("chrome")) {
