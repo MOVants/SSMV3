@@ -13,13 +13,13 @@ public class VehicleGroupModule extends StringValues{
 	public void setBrowser() {
 		browser = "Firefox";
 	}
-	public void browserConfig () {
+public void browserConfig () {
 		
 		if (browser.contains("Firefox")) {
-			System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver"); 
+			System.setProperty("webdriver.gecko.driver","C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\geckoDriver\\geckodriver"); 
 			driver = new FirefoxDriver();
-		}else if (browser.contains("Firefox")) {
-			System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
+		}else if (browser.contains("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\chromeDriver\\chromedriver");
 			driver = new ChromeDriver();
 		}
 	}
