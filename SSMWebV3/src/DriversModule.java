@@ -1,30 +1,36 @@
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.junit.*;
 import org.openqa.selenium.*;
 
 public class DriversModule extends StringValues{
 	private WebDriver driver;
-	private String baseUrl;
+	static String browser;
 
-
+	public void setBrowser() {
+		browser = "Firefox";
+	}
+	public void browserConfig () {
+		
+		if (browser.contains("Firefox")) {
+			System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver"); 
+			driver = new FirefoxDriver();
+		}else if (browser.contains("Firefox")) {
+			System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
+			driver = new ChromeDriver();
+		}
+	}
+	
 	@Before
 	public void setUp() throws Exception {
-
-
-//		System.setProperty("webdriver.gecko.driver","/home/marvin/Documents/Selinium/geckodriver"); 
-//		driver = new FirefoxDriver();
-		System.setProperty("webdriver.chrome.driver", "/home/marvin/Documents/Selinium/chromedriver");
-		driver = new ChromeDriver();
-		baseUrl = "http://172.16.0.133:8000";
+		setBrowser();
+		browserConfig();
+		driver.get("http://172.16.0.133:8000/satellite/user/login");
 		driver.manage().window().maximize();
-		driver.get(baseUrl + "/satellite/user/login");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 

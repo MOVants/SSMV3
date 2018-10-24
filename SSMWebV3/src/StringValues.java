@@ -4,19 +4,19 @@ public class StringValues {
 	protected String authusername = "marvin.ssmuser@ssm.com";
 	protected String authpass = "1";
 
-//	login
+	//	login
 	protected String btnAuthLogin = "//button[@type='submit']";
 	protected String usernameField = "username";
 	protected String passwordField = "password";
 	protected String btnLogin = "//button[@type='submit']";
-	
-//	Home
+
+	//	Home
 	protected String vehicleManagementBtn = "/html[1]/body[1]/section[1]/aside[1]/div[1]/div[1]/ul[1]/li[3]/a[1]";
 	protected String vehicleGroupManagementBtn = "//span[contains(text(),'Groups')]";
 	protected String driverManagementBtn = "/html[1]/body[1]/section[1]/aside[1]/div[1]/div[1]/ul[1]/li[5]/a[1]";
-	
-//	vehicles management
-	
+
+	//	vehicles management
+
 	protected String createVehicleBtn = "//span[text()='Create']";
 	protected String vehiclePlateField = "vehicle.plateNumber";
 	protected String vehiclechassisNumberField = "vehicle.chassisNumber";
@@ -41,20 +41,20 @@ public class StringValues {
 	protected String vehicleGroupToogleAll = "(.//*[normalize-space(text()) and normalize-space(.)='Select All'])[1]/following::span[1]";
 	protected String vehicleGrouptoggleone = "(.//*[normalize-space(text()) and normalize-space(.)='Is Cylindrical'])[1]/following::span[1]";
 	protected String btnSaveVehicle = "(.//*[normalize-space(text()) and normalize-space(.)='Cancel'])[1]/following::button[1]";
-	
-// notification message
+
+	// notification message
 	protected String getNotifSuccess = "//span[3]";
 	protected String getNotifError = "vehicleGroupName-error";
 
-	
-//	Vehicle Groups Modules
+
+	//	Vehicle Groups Modules
 	protected String editVehicleGroupBtn = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/a[1]/span[1]";
 	protected String createBtn = "//a[@class='btn bg-pink waves-effect btn-lg tooltipster tooltipstered']";
 	protected String vehicleGroupNameField = "vehicleGroupName";
 	protected String vehicleGroupDescField = "description";
 	protected String saveBtn = "//text()[contains(.,'Save')]/ancestor::button[1]";
-	
-// Drivers Modules
+
+	// Drivers Modules
 	protected String editBtn = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/a[1]";
 	protected String createDriverBtn = "//text()[contains(.,'Create')]/ancestor::a[1]";
 	protected String firstNameField = "firstName";
@@ -69,8 +69,8 @@ public class StringValues {
 	protected String dateOfBirthField = "dateOfBirth";
 	protected String savedDriverBtn = "//text()[.='Save']/ancestor::button[1]";
 	protected String cancelDriverBtn = "//text()[.='Cancel']/ancestor::a[1]";
-	
-	
+
+
 	public StringValues() {
 		super();
 	}
