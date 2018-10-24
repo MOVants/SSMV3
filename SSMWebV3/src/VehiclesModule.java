@@ -14,22 +14,22 @@ public class VehiclesModule extends StringValues {
 	static String whoUser;
 
 	public void setBrowser() {
+		
 		whoUser = "marvin";
-				
+
 		browser = "Chrome";
-		
-		
+
 	}
 	public void browserConfig () {
 
 		if (browser.contains("Firefox")) {
-			
+
 			if (whoUser.contains("marvin")) {
 				System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver");
 			} if (whoUser.contains("altair")) {
 				System.setProperty("webdriver.gecko.driver","C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\geckoDriver\\geckodriver"); 
 			}
-			
+
 			driver = new FirefoxDriver();
 		} if (browser.contains("Chrome")) {
 			if (whoUser.contains("marvin")) {
