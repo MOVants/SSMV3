@@ -67,10 +67,10 @@ public class VehiclesModule extends StringValues {
 		setGPSInfo();
 		setFuelTankCalibration();
 		assignVehicleGroups();
+		Thread.sleep(1000);
 		saveVehicle();
 		Thread.sleep(1000);
-		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
-		if (str.contains("successfully")){
+		if (driver.getPageSource().contains("successfully")){
 			System.out.println("Create Vehicle = Test Passed!");
 		} else {
 			System.out.println("Create Vehicle = Test Failed!");
@@ -275,7 +275,7 @@ public class VehiclesModule extends StringValues {
 		driver.findElement(By.xpath(vehicleGrouptoggleone)).click();
 	}
 	public void saveVehicle () {
-		driver.findElement(By.xpath(btnSaveVehicle)).click();
+		driver.findElement(By.id(btnSaveVehicle)).click();
 	}
 
 

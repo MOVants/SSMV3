@@ -38,9 +38,9 @@ public class StringValues {
 	protected String firmwareVersionField = "vehicle.telematicsDevice.firmWareVersion";
 	protected String appVersionField = "vehicle.telematicsDevice.appVersion";
 	protected String doorSensorInstallDate = "input-door-sensor-installation-date";
-	protected String vehicleGroupToogleAll = "(.//*[normalize-space(text()) and normalize-space(.)='Select All'])[1]/following::span[1]";
+	protected String vehicleGroupToogleAll = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[4]/div[1]/div[1]/div[1]/label[1]/span[1]";
 	protected String vehicleGrouptoggleone = "(.//*[normalize-space(text()) and normalize-space(.)='Is Cylindrical'])[1]/following::span[1]";
-	protected String btnSaveVehicle = "(.//*[normalize-space(text()) and normalize-space(.)='Cancel'])[1]/following::button[1]";
+	protected String btnSaveVehicle = "btn-save";
 
 	// notification message
 	protected String getNotifSuccess = "//span[3]";
