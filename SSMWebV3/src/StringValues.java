@@ -12,7 +12,7 @@ public class StringValues {
 
 	//	Home
 	protected String vehicleManagementBtn = "/html[1]/body[1]/section[1]/aside[1]/div[1]/div[1]/ul[1]/li[3]/a[1]";
-	protected String vehicleGroupManagementBtn = "//span[contains(text(),'Groups')]";
+	protected String vehicleGroupManagementBtn = "/html[1]/body[1]/section[1]/aside[1]/div[1]/div[1]/ul[1]/li[4]/a[1]/span[1]";
 	protected String driverManagementBtn = "/html[1]/body[1]/section[1]/aside[1]/div[1]/div[1]/ul[1]/li[5]/a[1]";
 
 	//	vehicles management
@@ -49,7 +49,7 @@ public class StringValues {
 
 	//	Vehicle Groups Modules
 	protected String editVehicleGroupBtn = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/a[1]/span[1]";
-	protected String createBtn = "//a[@class='btn bg-pink waves-effect btn-lg tooltipster tooltipstered']";
+	protected String createBtn = "//text()[contains(.,'Create')]/ancestor::a[1]";
 	protected String vehicleGroupNameField = "vehicleGroupName";
 	protected String vehicleGroupDescField = "description";
 	protected String saveBtn = "//text()[contains(.,'Save')]/ancestor::button[1]";
