@@ -459,8 +459,8 @@ public class DriversModule extends StringValues{
 		Thread.sleep(1000);
 		editDriverBtn();
 		Thread.sleep(1000);
-		driver.findElement(By.id(licenseExpiryDateField)).clear();
-		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(6));
+		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "2025");
 		String driverName = driver.findElement(By.id(firstNameField)).getText();
 		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
 		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
@@ -482,8 +482,8 @@ public class DriversModule extends StringValues{
 		Thread.sleep(1000);
 		editDriverBtn();
 		Thread.sleep(1000);
-		driver.findElement(By.id(dateOfBirthField)).clear();
-		driver.findElement(By.id(dateOfBirthField)).sendKeys(RandomStringUtils.randomNumeric(6));
+		driver.findElement(By.id(dateOfBirthField)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.findElement(By.id(dateOfBirthField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "1992");
 		String driverName = driver.findElement(By.id(firstNameField)).getText();
 		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
 		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
@@ -547,8 +547,8 @@ public class DriversModule extends StringValues{
 		new Select(driver.findElement(By.id(genderDrpdwn))).selectByVisibleText("Female");
 		driver.findElement(By.id(licenseNumberField)).sendKeys(RandomStringUtils.randomNumeric(8));
 		driver.findElement(By.id(addressField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(licenseExpiryDateField)).sendKeys("02022019");
-		driver.findElement(By.id(dateOfBirthField)).sendKeys("02021992");
+		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "2025");
+		driver.findElement(By.id(dateOfBirthField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "1992");
 
 	}
 
