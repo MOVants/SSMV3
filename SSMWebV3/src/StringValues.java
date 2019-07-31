@@ -1,8 +1,8 @@
 
 public class StringValues {
 	//user credentials
-	protected String authusername = "marvin.ssmuser@ssm.com";
-	protected String authpass = "1";
+	protected String authusername = "rosbel.clc@gmail.com";
+	protected String authpass = "admin";
 
 	//	login
 	protected String btnAuthLogin = "//button[@type='submit']";

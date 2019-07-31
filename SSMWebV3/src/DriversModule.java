@@ -14,10 +14,7 @@ public class DriversModule extends StringValues{
 
 	public void setBrowser() {
 		whoUser = "marvin";
-				
 		browser = "Chrome";
-		
-		
 	}
 	public void browserConfig () {
 
