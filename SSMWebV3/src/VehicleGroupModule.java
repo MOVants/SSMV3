@@ -107,8 +107,7 @@ public class VehicleGroupModule extends StringValues{
 		driver.findElement(By.id(vehicleGroupNameField)).clear();
 		saveVehicleGroup();
 		Thread.sleep(1000);
-		String str = driver.findElement(By.xpath(getNotifError)).getText();
-		if (str.contains("This field is required.")) {
+		if (driver.getPageSource().contains("required.")) {
 			System.out.println("Modify Vehicle Group Name  - Test Passed!");
 		}else {
 			System.out.println("Modify Vehicle Group Name - Test Failed!");

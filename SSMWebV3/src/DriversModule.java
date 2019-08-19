@@ -63,8 +63,7 @@ public class DriversModule extends StringValues{
 		String driverName = driver.findElement(By.id(firstNameField)).getText();
 		saveDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
-		if (str.contains(driverName))
+		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
 			System.out.println("Create Driver - Test Pass");
 		}else {
