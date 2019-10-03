@@ -169,7 +169,6 @@ public class VehicleGroupModule extends StringValues{
 		} else{
 			System.out.println("Missing Vehicle Group description Test - Failed!");
 		}
-
 	}
 
 	private void selectEditVehicleGroup () throws Exception {

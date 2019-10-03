@@ -1,5 +1,11 @@
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class StringValues {
+	
+	protected String randomAlphaNumChar = RandomStringUtils.randomAlphabetic(10);
+	protected String randomAlphaChar = RandomStringUtils.randomAlphabetic(6);
+	protected String randomNumChar = RandomStringUtils.randomAlphabetic(11);
+	
 	//user credentials
 	protected String authusername = "rosbel.clc@gmail.com";
 	protected String authpass = "admin";
