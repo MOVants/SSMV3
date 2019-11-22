@@ -2,13 +2,13 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class StringValues {
 	
-	protected String randomAlphaNumChar = RandomStringUtils.randomAlphabetic(10);
-	protected String randomAlphaChar = RandomStringUtils.randomAlphabetic(6);
-	protected String randomNumChar = RandomStringUtils.randomAlphabetic(11);
+	protected String randomAlphaNumChar = RandomStringUtils.randomAlphanumeric(10);
+	protected String randomChar = RandomStringUtils.randomAlphabetic(10);
+	protected String randomNum = RandomStringUtils.randomNumeric(11);
 	
 	//user credentials
-	protected String authusername = "rosbel.clc@gmail.com";
-	protected String authpass = "admin";
+	protected String authusername = "marvin.useradnmin@ssm.com";
+	protected String authpass = "1";
 
 	//	login
 	protected String btnAuthLogin = "//button[@type='submit']";

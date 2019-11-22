@@ -13,29 +13,24 @@ public class VehiclesModule extends StringValues {
 	static String browser;
 	static String whoUser;
 
-	public void setBrowser() {
-		
-		whoUser = "marvin";
-
-		browser = "Chrome";
-
-	}
-	public void browserConfig () {
+	public void browserUserConfig () {
+		String whoUser = "marvin";
+		String browser = "Chrome";
 
 		if (browser.contains("Firefox")) {
-
+			
 			if (whoUser.contains("marvin")) {
 				System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver");
-			} if (whoUser.contains("altair")) {
-				System.setProperty("webdriver.gecko.driver","C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\geckoDriver\\geckodriver"); 
+			} if (whoUser.contains("")) {
+				
 			}
-
+			
 			driver = new FirefoxDriver();
 		} if (browser.contains("Chrome")) {
 			if (whoUser.contains("marvin")) {
 				System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
-			}if (whoUser.contains("altair")) {
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\altair\\git\\SSMV3\\SSMWebV3\\libs\\chromeDriver\\chromedriver");
+			}if (whoUser.contains("")) {
+			
 			}
 		}
 		driver = new ChromeDriver();
@@ -43,8 +38,7 @@ public class VehiclesModule extends StringValues {
 
 	@Before
 	public void setUp() throws Exception {
-		setBrowser();
-		browserConfig();
+		browserUserConfig ();
 		driver.get("http://172.16.0.133:8000/satellite/user/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
