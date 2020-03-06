@@ -6,10 +6,8 @@ public class StringValues {
 	protected String randomChar = RandomStringUtils.randomAlphabetic(10);
 	protected String randomNum = RandomStringUtils.randomNumeric(11);
 	
-	//user credentials
-	protected String authusername = "marvin.useradnmin@ssm.com";
-	protected String authpass = "1";
-
+	
+	
 	//	login
 	protected String btnAuthLogin = "//button[@type='submit']";
 	protected String usernameField = "username";

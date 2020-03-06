@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,44 +10,22 @@ import org.openqa.selenium.*;
 
 public class VehicleGroupModule extends StringValues{
 	private WebDriver driver;
-	static String browser;
-	static String whoUser;
+Properties prop = new Properties();
 
-	public void setBrowser() {
-		whoUser = "marvin";
-		browser = "Chrome";
-		
-		
-	}
-	public void browserUserConfig () {
-		String whoUser = "marvin";
-		String browser = "Chrome";
-
-		if (browser.contains("Firefox")) {
-			
-			if (whoUser.contains("marvin")) {
-				System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver");
-			} if (whoUser.contains("")) {
-				
-			}
-			
-			driver = new FirefoxDriver();
-		} if (browser.contains("Chrome")) {
-			if (whoUser.contains("marvin")) {
-				System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
-			}if (whoUser.contains("")) {
-			
-			}
-		}
-		driver = new ChromeDriver();
+	
+	public void setBrowserConfig() throws Exception{
+		FileInputStream fi = new FileInputStream(System.getProperty("user.dir") + "/configuration.properties");
+		prop.load(fi);
+		System.setProperty(prop.getProperty("whatBrowser"), prop.getProperty("wheresChrome"));
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		setBrowser();
-		driver.get("http://172.16.0.133:8000/satellite/user/login");
+		setBrowserConfig();
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(prop.getProperty("url"));
 	}
 
 	  @Test
@@ -193,8 +173,8 @@ public class VehicleGroupModule extends StringValues{
 
 	private void loginUser() {
 		driver.findElement(By.xpath(btnAuthLogin)).click();
-		driver.findElement(By.id(usernameField)).sendKeys(authusername);
-		driver.findElement(By.id(passwordField)).sendKeys(authpass);
+		driver.findElement(By.id(usernameField)).sendKeys(prop.getProperty("rightUsername"));
+		driver.findElement(By.id(passwordField)).sendKeys(prop.getProperty("rightPassword"));
 		driver.findElement(By.xpath(btnLogin)).click();
 	}
 

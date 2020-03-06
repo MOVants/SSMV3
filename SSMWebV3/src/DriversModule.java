@@ -1,57 +1,38 @@
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.*;
 import org.openqa.selenium.*;
+import java.io.FileInputStream;
+import java.util.Properties;
+
 
 public class DriversModule extends StringValues{
-	private WebDriver driver;
-//	static String browser;
-//	static String whoUser;
-//
-//	public void setBrowser() {
-//		whoUser = "marvin";
-//		browser = "Chrome";
-//	}
-	public void browserUserConfig () {
-		String whoUser = "marvin";
-		String browser = "Chrome";
+	WebDriver driver;
+	Properties prop = new Properties();
 
-		if (browser.contains("Firefox")) {
-			
-			if (whoUser.contains("marvin")) {
-				System.setProperty("webdriver.gecko.driver","/home/marvin/git/SSMV3/SSMWebV3/libs/geckoDriver/geckodriver");
-			} if (whoUser.contains("")) {
-				
-			}
-			
-			driver = new FirefoxDriver();
-		} if (browser.contains("Chrome")) {
-			if (whoUser.contains("marvin")) {
-				System.setProperty("webdriver.chrome.driver", "/home/marvin/git/SSMV3/SSMWebV3/libs/chromeDriver/chromedriver");
-			}if (whoUser.contains("")) {
-			
-			}
-		}
-		driver = new ChromeDriver();
-	}
 	
+	public void setBrowserConfig() throws Exception{
+		FileInputStream fi = new FileInputStream(System.getProperty("user.dir") + "/configuration.properties");
+		prop.load(fi);
+		System.setProperty(prop.getProperty("whatBrowser"), prop.getProperty("wheresChrome"));
+	}
+
 	@Before
 	public void setUp() throws Exception {
-//		setBrowser();
-		browserUserConfig();
-		driver.get("http://172.16.0.133:8000/satellite/user/login");
+		setBrowserConfig();
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(prop.getProperty("url"));
 	}
-
 	@Test
 	public void loginTest() throws Exception {
 		loginUser();
-		System.out.println("Login - Test Pass");
+		System.out.println("Login - Test Passed");
 	} 
 
 	@Test
@@ -67,7 +48,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
-			System.out.println("Create Driver - Test Pass");
+			System.out.println("Create Driver - Test Passed");
 		}else {
 			System.out.println("Create Driver - Test Failed");
 		}
@@ -86,7 +67,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Name- Test Pass");
+			System.out.println("Create Driver Missing Name- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Name- Test Failed");
 		}
@@ -105,7 +86,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Middle Name- Test Pass");
+			System.out.println("Create Driver Missing Middle Name- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Middle Name- Test Failed");
 		}
@@ -124,7 +105,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Last Name- Test Pass");
+			System.out.println("Create Driver Missing Last Name- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Last Name- Test Failed");
 		}
@@ -143,7 +124,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Contact Number- Test Pass");
+			System.out.println("Create Driver Missing Contact Number- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Contact Number- Test Failed");
 		}
@@ -163,7 +144,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Email- Test Pass");
+			System.out.println("Create Driver Missing Email- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Email- Test Failed");
 		}
@@ -183,7 +164,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Gender is Male- Test Pass");
+			System.out.println("Create Driver Gender is Male- Test Passed");
 		}else {
 			System.out.println("Create Driver Gender is Male- Test Failed");
 		}
@@ -203,7 +184,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing license Number- Test Pass");
+			System.out.println("Create Driver Missing license Number- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing license Number- Test Failed");
 		}
@@ -222,7 +203,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Address- Test Pass");
+			System.out.println("Create Driver Missing Address- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Address- Test Failed");
 		}
@@ -241,7 +222,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing License Expiry Date- Test Pass");
+			System.out.println("Create Driver Missing License Expiry Date- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing License Expiry Date- Test Failed");
 		}
@@ -260,7 +241,7 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("This field is required."))
 		{
-			System.out.println("Create Driver Missing Date Of Birth- Test Pass");
+			System.out.println("Create Driver Missing Date Of Birth- Test Passed");
 		}else {
 			System.out.println("Create Driver Missing Date Of Birth- Test Failed");
 		}
@@ -282,7 +263,7 @@ public class DriversModule extends StringValues{
 		Thread.sleep(3000);
 		if (driver.getPageSource().contains("NAVIGATION"))
 		{
-			System.out.println("Cancel Create Driver - Test Pass");
+			System.out.println("Cancel Create Driver - Test Passed");
 		}else {
 			System.out.println("Cancel Create Driver - Test Failed");
 		}
@@ -303,9 +284,11 @@ public class DriversModule extends StringValues{
 		saveDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
+		
+		if (driver.getPageSource().contains(""))
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Details - Test Pass");
+			System.out.println("Modify Driver Details - Test Passeded");
 		}else {
 			System.out.println("Modify Driver Details - Test Failed");
 		}
@@ -328,7 +311,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Name - Test Pass");
+			System.out.println("Modify Driver Name - Test Passed");
 		}else {
 			System.out.println("Modify Driver Name - Test Failed");
 		}
@@ -351,7 +334,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Middle Name - Test Pass");
+			System.out.println("Modify Driver Middle Name - Test Passed");
 		}else {
 			System.out.println("Modify Driver Middle Name - Test Failed");
 		}
@@ -374,7 +357,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Last Name - Test Pass");
+			System.out.println("Modify Driver Last Name - Test Passed");
 		}else {
 			System.out.println("Modify Driver Last Name - Test Failed");
 		}
@@ -398,7 +381,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Contact Number - Test Pass");
+			System.out.println("Modify Driver Contact Number - Test Passed");
 		}else {
 			System.out.println("Modify Driver Contact Number - Test Failed");
 		}
@@ -421,7 +404,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Email - Test Pass");
+			System.out.println("Modify Driver Email - Test Passed");
 		}else {
 			System.out.println("Modify Driver Email - Test Failed");
 		}
@@ -444,7 +427,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Email - Test Pass");
+			System.out.println("Modify Driver Email - Test Passed");
 		}else {
 			System.out.println("Modify Driver Email - Test Failed");
 		}
@@ -467,7 +450,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver License Number - Test Pass");
+			System.out.println("Modify Driver License Number - Test Passed");
 		}else {
 			System.out.println("Modify Driver License Number - Test Failed");
 		}
@@ -490,7 +473,7 @@ public class DriversModule extends StringValues{
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
-			System.out.println("Modify Driver Date of Birth - Test Pass");
+			System.out.println("Modify Driver Date of Birth - Test Passed");
 		}else {
 			System.out.println("Modify Driver Date of Birth - Test Failed");
 		}
@@ -508,18 +491,16 @@ public class DriversModule extends StringValues{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("NAVIGATION"))
 		{
-			System.out.println("Cancel Modification of Driver Details - Test Pass");
+			System.out.println("Cancel Modification of Driver Details - Test Passed");
 		}else {
 			System.out.println("Cancel Modification of Driver Details - Test Failed");
 		}
 	}
 
-
-
 	private void loginUser() {
 		driver.findElement(By.xpath(btnAuthLogin)).click();
-		driver.findElement(By.id(usernameField)).sendKeys(authusername);
-		driver.findElement(By.id(passwordField)).sendKeys(authpass);
+		driver.findElement(By.id(usernameField)).sendKeys(prop.getProperty("rightUsername"));
+		driver.findElement(By.id(passwordField)).sendKeys(prop.getProperty("rightPassword"));
 		driver.findElement(By.xpath(btnLogin)).click();
 	}
 
@@ -542,7 +523,7 @@ public class DriversModule extends StringValues{
 		driver.findElement(By.id(contactNumberField)).sendKeys(RandomStringUtils.randomNumeric(6));
 		driver.findElement(By.id(emailField)).sendKeys(RandomStringUtils.randomNumeric(4)+"@"+RandomStringUtils.randomNumeric(3)+".com");
 		driver.findElement(By.id(genderDrpdwn)).click();
-		new Select(driver.findElement(By.id(genderDrpdwn))).selectByVisibleText("Female");
+		new Select(driver.findElement(By.id(genderDrpdwn))).selectByIndex(0);
 		driver.findElement(By.id(licenseNumberField)).sendKeys(RandomStringUtils.randomNumeric(8));
 		driver.findElement(By.id(addressField)).sendKeys(RandomStringUtils.randomNumeric(6));
 		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "2025");
@@ -556,10 +537,6 @@ public class DriversModule extends StringValues{
 
 	private void cancelDriver() {
 		driver.findElement(By.xpath(cancelDriverBtn));
-	}
-
-	private void setBrowserConfig() {
-
 	}
 
 	@After
