@@ -40,15 +40,15 @@ public class VehiclesModule extends StringValues {
 	public void createVehicleTest() throws Exception{
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		setGPSInfo();
 		setFuelTankCalibration();
 		assignVehicleGroups();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		saveVehicle();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if (driver.getPageSource().contains("successfully")){
 			System.out.println("Create Vehicle = Test Passed!");
 		} else {
@@ -60,7 +60,7 @@ public class VehiclesModule extends StringValues {
 	public void missingVehiclePlateNoTest() throws Exception {
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id(vehiclePlateField)).clear();
@@ -83,7 +83,7 @@ public class VehiclesModule extends StringValues {
 		//	  driver.get(baseUrl + "/satellite/user/login");
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id(vehiclechassisNumberField)).clear();
@@ -106,7 +106,7 @@ public class VehiclesModule extends StringValues {
 		//	  driver.get(baseUrl + "/satellite/user/login");
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id(vehicleMilageField)).clear();
@@ -128,7 +128,7 @@ public class VehiclesModule extends StringValues {
 		//	  driver.get(baseUrl + "/satellite/user/login");
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id(fuelConsumptionField)).clear();
@@ -150,7 +150,7 @@ public class VehiclesModule extends StringValues {
 
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id(vehicleDescriptionField)).clear();
@@ -170,7 +170,7 @@ public class VehiclesModule extends StringValues {
 	public void manufacturerIsNotSet() throws InterruptedException {
 		loginUser();
 		vehiclesManagement();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		createVehicle();
 		setvehivleInformation();
 		driver.findElement(By.id("vehicle.description")).clear();
@@ -211,7 +211,7 @@ public class VehiclesModule extends StringValues {
 		driver.findElement(By.id(vehiclechassisNumberField)).sendKeys(RandomStringUtils.randomNumeric(11));
 		driver.findElement(By.id(calPurchaseDate)).click();
 		driver.findElement(By.linkText(RandomStringUtils.randomNumeric(1))).click();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		for (String handle : driver.getWindowHandles()) {
 			driver.switchTo().window(handle);
 		}
@@ -235,7 +235,7 @@ public class VehiclesModule extends StringValues {
 		driver.findElement(By.id(appVersionField)).sendKeys(RandomStringUtils.randomNumeric(1));
 		driver.findElement(By.id(doorSensorInstallDate)).click();
 		driver.findElement(By.linkText(RandomStringUtils.randomNumeric(1))).click();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		for (String handle : driver.getWindowHandles()) {
 			driver.switchTo().window(handle);
 		}

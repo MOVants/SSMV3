@@ -10,9 +10,11 @@ import org.openqa.selenium.*;
 
 public class VehicleGroupModule extends StringValues{
 	private WebDriver driver;
-Properties prop = new Properties();
+	String groupName;
+	String groupDesc;
+	Properties prop = new Properties();
 
-	
+
 	public void setBrowserConfig() throws Exception{
 		FileInputStream fi = new FileInputStream(System.getProperty("user.dir") + "/configuration.properties");
 		prop.load(fi);
@@ -24,20 +26,22 @@ Properties prop = new Properties();
 		setBrowserConfig();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get(prop.getProperty("url"));
 	}
 
-	  @Test
-	  public void createVehicleGroupTest() throws Exception {
+	@Test
+	public void createVehicleGroupTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
 		cLickCreateBtn();
+		Thread.sleep(1000);
 		setVehicleGroupInfo();
-		String getgroupName = driver.findElement(By.id(vehicleGroupNameField)).getText();
+		getVehiclegroupData();
+		Thread.sleep(500);
 		saveVehicleGroup();
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
-		if (str.contains(getgroupName)) {
+		if (str.contains(groupName)) {
 			System.out.println("Create Vehicle Group test = Passed!");
 		}else {
 			System.out.println("Create Vehicle Group test = Failed!");
@@ -48,12 +52,14 @@ Properties prop = new Properties();
 	public void missingVehicleGroupNameTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
+		Thread.sleep(500);
 		cLickCreateBtn();
 		setVehicleGroupInfo();
 		driver.findElement(By.id(vehicleGroupNameField)).clear();
+		Thread.sleep(500);
 		saveVehicleGroup();
-		String str = driver.findElement(By.id(getNotifError)).getText();
-		if (str.contains("This field is required."))
+		Thread.sleep(500);
+		if (driver.getPageSource().contains(missinfieldError))
 		{
 			System.out.println("Missing Vehicle Group Name - Test Passed!");
 		} else {
@@ -65,12 +71,16 @@ Properties prop = new Properties();
 	public void missingVehicleGroupDescTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
+		Thread.sleep(500);
 		cLickCreateBtn();
+		Thread.sleep(500);
 		setVehicleGroupInfo();
-		String groupName = driver.findElement(By.id(vehicleGroupNameField)).getText();
+		Thread.sleep(500);
 		driver.findElement(By.id(vehicleGroupDescField)).clear();
+		getVehiclegroupData();
+		Thread.sleep(500);
 		saveVehicleGroup();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(groupName)){	    
 			System.out.println("Missing Vehicle Group Description - Test Passed!");
@@ -82,12 +92,13 @@ Properties prop = new Properties();
 	public void ModMissingVehicleGroupNameTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
+		Thread.sleep(500);
 		selectEditVehicleGroup();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.id(vehicleGroupNameField)).clear();
 		saveVehicleGroup();
-		Thread.sleep(1000);
-		if (driver.getPageSource().contains("required.")) {
+		Thread.sleep(500);
+		if (driver.getPageSource().contains(missinfieldError)) {
 			System.out.println("Modify Vehicle Group Name  - Test Passed!");
 		}else {
 			System.out.println("Modify Vehicle Group Name - Test Failed!");
@@ -98,12 +109,13 @@ Properties prop = new Properties();
 	public void ModmissingVehicleGroupDecsTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
+		Thread.sleep(500);
 		selectEditVehicleGroup ();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.id(vehicleGroupDescField)).clear();
-		String groupName = driver.findElement(By.id(vehicleGroupDescField)).getText();
+		getVehiclegroupData();;
 		saveVehicleGroup();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(groupName)) {
 			System.out.println("Modify Vehicle Group Name  - Test Passed!");
@@ -112,18 +124,18 @@ Properties prop = new Properties();
 		} 
 	}
 
-
 	@Test
 	public void modifyVehicleGroupNameTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
-		selectEditVehicleGroup ();
-		Thread.sleep(1000);
+		Thread.sleep(500);
+		selectEditVehicleGroup();
+		Thread.sleep(500);
 		driver.findElement(By.id(vehicleGroupNameField)).clear();
-		driver.findElement(By.id(vehicleGroupNameField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		String groupName = driver.findElement(By.id(vehicleGroupNameField)).getText();
+		driver.findElement(By.id(vehicleGroupNameField)).sendKeys(randomAlphaNumChar10);
+		getVehiclegroupData();
 		saveVehicleGroup();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(groupName)) {
 			System.out.println("Missing Vehicle Group Test - Passed!");
@@ -136,13 +148,14 @@ Properties prop = new Properties();
 	public void modifyVehicleGroupDecsTest() throws Exception {
 		loginUser();
 		clickVehicleGroupTab();
+		Thread.sleep(500);
 		selectEditVehicleGroup ();
-		Thread.sleep(1000);
-		String groupName = driver.findElement(By.id(vehicleGroupNameField)).getText();
+		Thread.sleep(500);
+		getVehiclegroupData();
 		driver.findElement(By.id(vehicleGroupDescField)).clear();
-		driver.findElement(By.id(vehicleGroupDescField)).sendKeys(RandomStringUtils.randomNumeric(30));
+		driver.findElement(By.id(vehicleGroupDescField)).sendKeys(randomAlphaNumChar30);
 		saveVehicleGroup();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(groupName)) {
 			System.out.println("Missing Vehicle Group description Test - Passed!");
@@ -152,8 +165,12 @@ Properties prop = new Properties();
 	}
 
 	private void selectEditVehicleGroup () throws Exception {
-		Thread.sleep(1000);
 		driver.findElement(By.xpath(editVehicleGroupBtn)).click();
+	}
+
+	private void getVehiclegroupData() {
+		groupName = driver.findElement(By.id(vehicleGroupNameField)).getText();
+		groupDesc = driver.findElement(By.id(vehicleGroupDescField)).getText();
 	}
 
 
@@ -162,13 +179,13 @@ Properties prop = new Properties();
 	}
 
 	private void cLickCreateBtn()throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.xpath(createBtn)).click();
 
 	}
 	private void setVehicleGroupInfo() {
-		driver.findElement(By.id(vehicleGroupNameField)).sendKeys(RandomStringUtils.randomAlphanumeric(6));
-		driver.findElement(By.id(vehicleGroupDescField)).sendKeys(RandomStringUtils.randomAlphanumeric(30));
+		driver.findElement(By.id(vehicleGroupNameField)).sendKeys(randomAlphaNumChar10);
+		driver.findElement(By.id(vehicleGroupDescField)).sendKeys(randomAlphaNumChar30);
 	}
 
 	private void loginUser() {
@@ -179,7 +196,7 @@ Properties prop = new Properties();
 	}
 
 	private void saveVehicleGroup()  {
-		driver.findElement(By.xpath(saveBtn)).click();
+		driver.findElement(By.id(saveBtn)).click();
 	}
 
 	@After

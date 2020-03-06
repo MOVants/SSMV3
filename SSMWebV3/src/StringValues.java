@@ -2,9 +2,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class StringValues {
 	
-	protected String randomAlphaNumChar = RandomStringUtils.randomAlphanumeric(10);
-	protected String randomChar = RandomStringUtils.randomAlphabetic(10);
-	protected String randomNum = RandomStringUtils.randomNumeric(11);
+	protected String randomAlphaNumChar10 = RandomStringUtils.randomAlphanumeric(10);
+	protected String randomAlphaNumChar30 = RandomStringUtils.randomAlphanumeric(30);
+	protected String randomAlphaNumChar3 = RandomStringUtils.randomAlphanumeric(3);
+	protected String randomChar10 = RandomStringUtils.randomAlphabetic(10);
+	protected String randomNum11 = RandomStringUtils.randomNumeric(11);
+	protected String randomNum4 = RandomStringUtils.randomNumeric(4);
 	
 	
 	
@@ -48,6 +51,7 @@ public class StringValues {
 
 	// notification message
 	protected String getNotifSuccess = "//span[3]";
+	protected String missinfieldError = "This field is required";
 	protected String getNotifError = "vehicleGroupName-error";
 
 
@@ -56,10 +60,10 @@ public class StringValues {
 	protected String createBtn = "//text()[contains(.,'Create')]/ancestor::a[1]";
 	protected String vehicleGroupNameField = "vehicleGroupName";
 	protected String vehicleGroupDescField = "description";
-	protected String saveBtn = "//text()[contains(.,'Save')]/ancestor::button[1]";
+	protected String saveBtn = "btn-save";
 
 	// Drivers Modules
-	protected String editBtn = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/a[1]";
+	protected String editBtn = "//*[@id=\"driverTable\"]/tbody/tr[1]/td[2]/a";
 	protected String createDriverBtn = "//text()[contains(.,'Create')]/ancestor::a[1]";
 	protected String firstNameField = "firstName";
 	protected String middleNameField = "middleName";
@@ -71,8 +75,8 @@ public class StringValues {
 	protected String addressField = "personnelCurrentAddress";
 	protected String licenseExpiryDateField = "licenseExpiryDate";
 	protected String dateOfBirthField = "dateOfBirth";
-	protected String savedDriverBtn = "//text()[.='Save']/ancestor::button[1]";
-	protected String cancelDriverBtn = "//text()[.='Cancel']/ancestor::a[1]";
+	protected String savedDriverBtn = "//form[@id='driverForm']/div[5]/button";
+	protected String cancelDriverBtn = "Cancel";
 
 
 	public StringValues() {

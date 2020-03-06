@@ -13,6 +13,10 @@ import java.util.Properties;
 public class DriversModule extends StringValues{
 	WebDriver driver;
 	Properties prop = new Properties();
+	String getStatus;
+	String driverName;
+	String driverMidName;
+	String driverLastName;
 
 	
 	public void setBrowserConfig() throws Exception{
@@ -26,14 +30,9 @@ public class DriversModule extends StringValues{
 		setBrowserConfig();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		driver.get(prop.getProperty("url"));
 	}
-	@Test
-	public void loginTest() throws Exception {
-		loginUser();
-		System.out.println("Login - Test Passed");
-	} 
 
 	@Test
 	public void createDriverTest() throws Exception {
@@ -43,12 +42,12 @@ public class DriversModule extends StringValues{
 		clickCreateDriverBtn();
 		Thread.sleep(1000);
 		setDriverDetails();
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
-			System.out.println("Create Driver - Test Passed");
+			System.out.println("Create Driver - Test Passed" );
 		}else {
 			System.out.println("Create Driver - Test Failed");
 		}
@@ -64,7 +63,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(firstNameField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing Name- Test Passed");
@@ -83,8 +82,8 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(middleNameField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		if (driver.getPageSource().contains("This field is required."))
+		Thread.sleep(500);
+		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
 			System.out.println("Create Driver Missing Middle Name- Test Passed");
 		}else {
@@ -102,7 +101,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(lastNameField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing Last Name- Test Passed");
@@ -121,7 +120,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(contactNumberField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing Contact Number- Test Passed");
@@ -141,8 +140,8 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(emailField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		if (driver.getPageSource().contains("This field is required."))
+		Thread.sleep(500);
+		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
 			System.out.println("Create Driver Missing Email- Test Passed");
 		}else {
@@ -161,7 +160,7 @@ public class DriversModule extends StringValues{
 		driver.findElement(By.id(genderDrpdwn)).click();
 		new Select(driver.findElement(By.id(genderDrpdwn))).selectByVisibleText("Male");
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Gender is Male- Test Passed");
@@ -181,7 +180,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(licenseNumberField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing license Number- Test Passed");
@@ -200,8 +199,8 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(addressField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		if (driver.getPageSource().contains("This field is required."))
+		Thread.sleep(1000);
+		if (driver.getPageSource().contains("Successfully") ||driver.getPageSource().contains(driverName) )
 		{
 			System.out.println("Create Driver Missing Address- Test Passed");
 		}else {
@@ -219,7 +218,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(licenseExpiryDateField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing License Expiry Date- Test Passed");
@@ -238,7 +237,7 @@ public class DriversModule extends StringValues{
 		setDriverDetails();
 		driver.findElement(By.id(dateOfBirthField)).clear();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("This field is required."))
 		{
 			System.out.println("Create Driver Missing Date Of Birth- Test Passed");
@@ -260,7 +259,7 @@ public class DriversModule extends StringValues{
 		for (String handle : driver.getWindowHandles()) {
 			driver.switchTo().window(handle);
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		if (driver.getPageSource().contains("NAVIGATION"))
 		{
 			System.out.println("Cancel Create Driver - Test Passed");
@@ -276,13 +275,11 @@ public class DriversModule extends StringValues{
 		driverManagement();
 		Thread.sleep(1000);
 		editDriverBtn();
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		getUserData();
 		Thread.sleep(1000);
 		setDriverDetails();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		
 		if (driver.getPageSource().contains(""))
@@ -302,12 +299,10 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(firstNameField)).clear();
-		driver.findElement(By.id(firstNameField)).sendKeys(RandomStringUtils.randomAlphabetic(6));
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(firstNameField)).sendKeys(randomChar10);
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -325,12 +320,10 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(middleNameField)).clear();
-		driver.findElement(By.id(middleNameField)).sendKeys(RandomStringUtils.randomAlphabetic(6));
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(middleNameField)).sendKeys(randomChar10);
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -348,12 +341,10 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(lastNameField)).clear();
-		driver.findElement(By.id(lastNameField)).sendKeys(RandomStringUtils.randomAlphabetic(6));
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(lastNameField)).sendKeys(randomChar10);
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -372,12 +363,10 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(contactNumberField)).clear();
-		driver.findElement(By.id(contactNumberField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(contactNumberField)).sendKeys(randomNum4);
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -395,12 +384,10 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(emailField)).clear();
-		driver.findElement(By.id(emailField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(emailField)).sendKeys(randomAlphaNumChar10 +"@"+randomAlphaNumChar3+".com");
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -419,11 +406,9 @@ public class DriversModule extends StringValues{
 		Thread.sleep(1000);
 		driver.findElement(By.id(genderDrpdwn)).click();
 		new Select(driver.findElement(By.id(genderDrpdwn))).selectByVisibleText("Male");
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -437,16 +422,15 @@ public class DriversModule extends StringValues{
 	public void modifyDriverLicenseNum() throws Exception {
 		loginUser();
 		driverManagement();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		editDriverBtn();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
-		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "2025");
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		Thread.sleep(500);
+		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(randomNum4+"2025");
+		getUserData();
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -464,12 +448,11 @@ public class DriversModule extends StringValues{
 		editDriverBtn();
 		Thread.sleep(1000);
 		driver.findElement(By.id(dateOfBirthField)).sendKeys(Keys.chord(Keys.CONTROL, "a"));
-		driver.findElement(By.id(dateOfBirthField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "1992");
-		String driverName = driver.findElement(By.id(firstNameField)).getText();
-		String driverMidName = driver.findElement(By.id(middleNameField)).getText();
-		String driverLastName = driver.findElement(By.id(lastNameField)).getText();
+		driver.findElement(By.id(dateOfBirthField)).sendKeys(randomNum4+ "1992");
+		getUserData();
+		Thread.sleep(1000);
 		saveDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 		String str = driver.findElement(By.xpath(getNotifSuccess)).getText();
 		if (str.contains(driverName) && str.contains(driverMidName) && str.contains(driverLastName))
 		{
@@ -483,12 +466,13 @@ public class DriversModule extends StringValues{
 	public void modifyDriverCancel() throws Exception {
 		loginUser();
 		driverManagement();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		editDriverBtn();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		setDriverDetails();
-		cancelCreateDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(500);
+		cancelDriver();
+		Thread.sleep(500);
 		if (driver.getPageSource().contains("NAVIGATION"))
 		{
 			System.out.println("Cancel Modification of Driver Details - Test Passed");
@@ -517,18 +501,24 @@ public class DriversModule extends StringValues{
 	}
 
 	private void setDriverDetails() {
-		driver.findElement(By.id(firstNameField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(middleNameField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(lastNameField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(contactNumberField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(emailField)).sendKeys(RandomStringUtils.randomNumeric(4)+"@"+RandomStringUtils.randomNumeric(3)+".com");
+		driver.findElement(By.id(firstNameField)).sendKeys(randomChar10);
+		driver.findElement(By.id(middleNameField)).sendKeys(randomChar10);
+		driver.findElement(By.id(lastNameField)).sendKeys(randomAlphaNumChar3);
+		driver.findElement(By.id(contactNumberField)).sendKeys(randomNum11);
+		driver.findElement(By.id(emailField)).sendKeys(randomAlphaNumChar10 +"@"+randomAlphaNumChar3+".com");
 		driver.findElement(By.id(genderDrpdwn)).click();
 		new Select(driver.findElement(By.id(genderDrpdwn))).selectByIndex(0);
-		driver.findElement(By.id(licenseNumberField)).sendKeys(RandomStringUtils.randomNumeric(8));
-		driver.findElement(By.id(addressField)).sendKeys(RandomStringUtils.randomNumeric(6));
-		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "2025");
-		driver.findElement(By.id(dateOfBirthField)).sendKeys(RandomStringUtils.randomNumeric(4)+ "1992");
+		driver.findElement(By.id(licenseNumberField)).sendKeys(randomNum4);
+		driver.findElement(By.id(addressField)).sendKeys(randomAlphaNumChar10);
+		driver.findElement(By.id(licenseExpiryDateField)).sendKeys(randomNum4+ "2025");
+		driver.findElement(By.id(dateOfBirthField)).sendKeys(randomNum4+ "1992");
 
+	}
+	
+	public void getUserData() {
+		 driverName = driver.findElement(By.id(firstNameField)).getText();
+		 driverMidName = driver.findElement(By.id(middleNameField)).getText();
+		 driverLastName = driver.findElement(By.id(lastNameField)).getText();
 	}
 
 	private void saveDriver() {
@@ -536,7 +526,7 @@ public class DriversModule extends StringValues{
 	}
 
 	private void cancelDriver() {
-		driver.findElement(By.xpath(cancelDriverBtn));
+		driver.findElement(By.linkText(cancelDriverBtn));
 	}
 
 	@After
